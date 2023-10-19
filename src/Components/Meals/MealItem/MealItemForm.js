@@ -1,8 +1,15 @@
 import classes from './MealItemForm.module.css'
 import Input from '../../UI/Input'
+import React, { useContext } from 'react'
+import CartContext from '../../../Store/cart-context'
 const MealItemForm=(props)=>{
+    const cartCtx = useContext(CartContext)
+    const addItem=(e)=>{
+        e.preventDefault()
+        cartCtx.totalAmount+=1
+    }
     return(
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={addItem}>
             <Input label='Amount' input={{
                 id:'amount',
                 type:'number',
